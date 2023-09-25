@@ -9,24 +9,20 @@ use App\Http\Controllers\backend\StatusController;
 use App\Http\Controllers\backend\jobPostController;
 use App\Http\Controllers\backend\CategoriesController;
 use App\Http\Controllers\backend\ApplicationController;
+use App\Http\Controllers\backend\GoogleController;
 use App\Http\Controllers\backend\ProfileMangeController;
 use App\Http\Controllers\backend\SubCategoriesController;
 use App\Http\Controllers\backend\UserManagemetController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
+//Login with Google route try
+Route::get('/auth/redirect',[GoogleController::class, 'goGoogle'])->name('google.login');
+Route::get('/login/redirect-home',[GoogleController::class, 'backFromGoogle'])->name('google.redirect');
+//Login with Google route trys
 
 Auth::routes();
+
 
 route::middleware(['auth','banuser'])->group(function(){
 
@@ -61,9 +57,13 @@ route::prefix("/admin")->name("profile")->controller(ProfileMangeController::cla
 });
 
 
+
+
+
 //Route group for login/register
 route::prefix("/welcome")->name("auth.")->controller(LoginController::class)->group(function(){
     Route::get('/login', 'showLoginForm')->name('login');
+
 });
 
 route::prefix("/welcome")->name("auth.")->controller(RegisterController::class)->group(function(){

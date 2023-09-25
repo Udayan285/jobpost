@@ -68,13 +68,13 @@
                             </div>
                         </form>
 
-                          {{-- <button class="btn btn-outline-secondary py-3 px-4 w-full w-xl-32 mt-3 mt-xl-0 align-top">Sign up</button> --}}
-
-                        {{-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif --}}
+                            
+                    {{-- login with google here --}}
+                    <a href="{{ route('google.login') }}" class="btn">
+                        <img style="height: 50px; width:50px; border-radius:50%; object-fit:cover;" class="d-inline"
+                            src="{{ asset('backend/dist/images/google.png') }}" alt=""> Login With Google
+                    </a>
+                    {{-- login with google here --}}
                       
                        
                         <div class="intro-x mt-10 mt-xl-24 text-gray-700 dark-text-gray-600 text-center text-xl-start">
