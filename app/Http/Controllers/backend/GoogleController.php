@@ -41,5 +41,34 @@ class GoogleController extends Controller
          
          
     }
+
+    function goFacebook(){
+        
+        return Socialite::driver('facebook')->redirect();
+    }
+
+     function backFromFacebook(Request $request){
+
+                $user = Socialite::driver('facebook')->user();
+            
+            if($user){
+                    $authUser = User::updateOrCreate([
+                            'email' => $user->email,
+                        ], [
+                            'name' => $user->name,
+                            'email' => $user->email,
+                            'password' => Hash::make(uniqid()),
+                            'designation' => "Developer",
+                            
+                        ]);
+                        
+                        Auth::login($authUser);
+                        return redirect()->route('home');
+            }
+
+            
+            
+            
+        }
    
 }

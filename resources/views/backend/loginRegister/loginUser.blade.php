@@ -75,6 +75,13 @@
                             src="{{ asset('backend/dist/images/google.png') }}" alt=""> Login With Google
                     </a>
                     {{-- login with google here --}}
+
+                      {{-- login with facebook here --}}
+                    <a href="{{ route('facebook.login') }}" class="btn">
+                        <img style="height: 40px; width:40px; border-radius:50%; object-fit:cover;" class="d-block"
+                            src="{{ asset('backend/dist/images/fb.webp') }}" alt=""> Login With Facebook
+                    </a>
+                    {{-- login with Facebook here --}}
                       
                        
                         <div class="intro-x mt-10 mt-xl-24 text-gray-700 dark-text-gray-600 text-center text-xl-start">

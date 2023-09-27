@@ -16,10 +16,15 @@ use App\Http\Controllers\backend\UserManagemetController;
 
 
 
-//Login with Google route try
+//Login with Google & FACEBOOK route try
 Route::get('/auth/redirect',[GoogleController::class, 'goGoogle'])->name('google.login');
 Route::get('/login/redirect-home',[GoogleController::class, 'backFromGoogle'])->name('google.redirect');
-//Login with Google route trys
+
+//facebook
+Route::get('/facebook/redirect',[GoogleController::class, 'goFacebook'])->name('facebook.login');
+Route::get('/facebook/redirect-home',[GoogleController::class, 'backFromFacebook'])->name('facebook.redirect');
+
+//Login with Google & Facebok route trys
 
 Auth::routes();
 
