@@ -2,7 +2,6 @@
 
 @section("backendContent")
 
-
     <div class="container">
         <div class="row">
             <form action="{{ route('banner.create') }}" method="POST" class="form">

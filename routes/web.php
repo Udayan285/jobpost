@@ -24,7 +24,7 @@ Route::get('/login/redirect-home',[GoogleController::class, 'backFromGoogle'])->
 Route::get('/facebook/redirect',[GoogleController::class, 'goFacebook'])->name('facebook.login');
 Route::get('/facebook/redirect-home',[GoogleController::class, 'backFromFacebook'])->name('facebook.redirect');
 
-//Login with Google & Facebok route trys
+//Login with Google & Facebook route try
 
 Auth::routes();
 

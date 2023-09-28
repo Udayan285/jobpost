@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
-use Carbon\Carbon;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Helpers\MediaUpload;
@@ -47,6 +47,19 @@ class ProfileMangeController extends Controller
         
         $user = User::find(auth()->user()->id);
 
+
+        // Check if a previous image exists
+        if ($user->profile_img) {
+
+            // Delete the previous profile image from the file system
+            $previousImage = public_path('storage/users/' . $user->profile_img);
+       
+            if (file_exists($previousImage)) {
+                unlink($previousImage);
+                
+            }
+        }
+            
         $user->name = $request->name;
         $user->designation = $request->designation;
         $user->description = $request->description;
@@ -55,7 +68,7 @@ class ProfileMangeController extends Controller
         $user->profile_url = $profileImg["fileUrl"] ?? null;
         $user->profile_img = $profileImg["fileName"] ?? null;
         $user->save();
-
+        
         return back();
     }
 
