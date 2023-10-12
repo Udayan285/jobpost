@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Job board HTML-5 Template </title>
+<title>Udayan's | Job Portaal App with Laravel</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="https://preview.colorlib.com/theme/jobfinderportal/site.webmanifest">
@@ -21,6 +21,16 @@
 <link rel="stylesheet" href={{ asset('frontend/assets/css/slick.css') }}>
 <link rel="stylesheet" href={{ asset('frontend/assets/css/nice-select.css') }}>
 <link rel="stylesheet" href={{ asset('frontend/assets/css/style.css') }}>
+
+<style>
+  .liID{
+    background-color: rgb(150, 139, 139); 
+    width:30%; 
+    padding:20px;
+    border-radius:25px; 
+    margin-top:5px; 
+  }
+</style>
 </head>
 <body>
 
@@ -283,5 +293,6 @@ Copyright &copy;<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"7f45e0f67b4a78c3","version":"2023.8.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
 @stack('imgview')
+@stack('search')
 </body>
 </html>

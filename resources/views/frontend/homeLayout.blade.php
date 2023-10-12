@@ -21,62 +21,64 @@
                     </div>
 
                     {{-- searching --}}
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-8">
 
-                            <form action="#" class="search-box">
-                                <div class="input-form">
-                                    <input type="text" placeholder="Job Tittle or keyword">
+                            <div class="search-box" id="formDefult">
+                                <div class="input-form" style=" height:50px; width:50%; margin-bottom:10px;">
+                                    <input type="text" style="height:55px; width:50%;  border-radius:5px; padding:15px;" id="searchInput" placeholder="Job Tittle or keyword">
+                                    <button id="searchBtn" style="height:50px;" class="btn">Find job</button>
                                 </div>
-                              
-                             
-                                    <button class="btn">Find job</button>
                                 
-                            </form>
+                            </div>
                         </div>
-                    </div> --}}
-
+                    </div>
+                    <ul id="searchResults" >
+                      {{-- here li populate by javascript --}}
+                     
+                    </ul>
+                    {{-- searching --}}
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="our-services section-pad-t30">
-        <div class="container">
+        <div class="our-services section-pad-t30">
+            <div class="container">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-tittle text-center">
-                        <span>FEATURED TOURS Packages</span>
-                        <h2>Browse Categories </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row d-flex justify-contnet-center ">
-
-
-                @foreach ($categoriess as $category)
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-report"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="{{ route('home.joblist', $category->id) }}">{{ $category->title }}</a></h5>
-                                <span>(658)</span>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <span>FEATURED TOURS Packages</span>
+                            <h2>Browse Categories </h2>
                         </div>
                     </div>
-                @endforeach
+                </div>
+
+                <div class="row d-flex justify-contnet-center ">
+
+
+                    @foreach ($categoriess as $category)
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-services text-center mb-30">
+                                <div class="services-ion">
+                                    <span class="flaticon-report"></span>
+                                </div>
+                                <div class="services-cap">
+                                    <h5><a href="{{ route('home.joblist', $category->id) }}">{{ $category->title }}</a></h5>
+                                    <span>(658)</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
 
 
 
 
 
 
-            </div>
+                </div>
         </div>
 
 
@@ -208,4 +210,53 @@
                 </div>
             </div>
         </div>
+
+
+        {{-- search functionality with Ajax --}}
+        @push('search')
+             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+            <script>
+                const searchButton = document.getElementById('searchBtn');
+                const searchResults = document.getElementById('searchResults');
+                
+                searchButton.addEventListener('click', () => {
+                    // console.log("clicked");
+                  
+                    // form = prev
+                    const query = document.getElementById('searchInput').value;
+                    search(query);
+                });
+
+                function search(query) {
+                    $.ajax({
+                        url: '/search',
+                        type: 'GET',
+                        data: { query: query },
+                        success: function(response) {
+                            displayResults(response);
+                        },
+                        error: function(error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }
+                function displayResults(results) {
+                    // Clear previous results
+                    searchResults.innerHTML = '';
+
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const resultItem = document.createElement('li');
+                           const resultMain = resultItem.classList.add('liID');
+                           resultItem.innerText = result.title;  
+
+                            searchResults.appendChild(resultItem);
+                        });
+                    } else {
+                        searchResults.innerText = 'No results found.';
+                    }
+                }
+            </script>
+        @endpush
     @endsection

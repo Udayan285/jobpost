@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\FrontendController;
-
+use App\Http\Controllers\frontend\SearchController;
 
 //frontend route here
 Route::get('/', [FrontendController::class, 'homePage'])->name('homePage');
@@ -17,3 +17,5 @@ route::prefix("/home")->name("home.")->controller(FrontendController::class)->gr
     Route::get('/job-apply/{slug}', 'applyJob')->name('jobapply');
     Route::post('/job-apply/applied', 'submitApply')->name('submitapply');
 });
+
+route::get('/search',[SearchController::class, 'search'])->name('search');
